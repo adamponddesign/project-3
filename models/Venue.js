@@ -26,7 +26,11 @@ const venueSchema = new mongoose.Schema({
   admissionFee: { type: Number, unique: true, required: 'Please enter price of entry' },
   description: {type: String, unique: true, required: 'Please enter description'},
   venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
-  musicStyle: { type: String, required: true, enum: genres }
+  musicStyle: { type: String, required: true, enum: genres },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
 })
 
 venueSchema.plugin(uniqueValidator)
