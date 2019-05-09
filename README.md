@@ -1,4 +1,6 @@
 # project-3
 
+Adam Pond is a legend
 Hugo Raymond
-Adam Pond
+
+Testing different merges
