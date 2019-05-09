@@ -23,7 +23,7 @@ const venueSchema = new mongoose.Schema({
     end: String,
     day: Number
   }],
-  admissionFee: { type: Number, unique: true, required: 'Please enter price of entry' },
+  admissionFee: { type: Number, required: 'Please enter price of entry' },
   description: {type: String, unique: true, required: 'Please enter description'},
   venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
   musicStyle: { type: String, required: true, enum: genres },
