@@ -12,17 +12,47 @@ class New extends React.Component {
     this.state = {
       data: {},
       errors: {},
-      houses: []      //empty array
+      venues: []      //empty array
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount() {
-    axios.get('/api/houses')
-      .then(res => this.setState({ houses: res.data }))
+    axios.get('/api/venues')
+      .then(res => this.setState({ venues: res.data }))
   }
+
+
+  handleSelect(e){
+    // console.log(e)
+    e.forEach(el => {
+      console.log(el.label)
+    })
+    // console.log(value)
+    const data = {...this.state.data, musicStyles: e}
+
+
+    this.setState({ data })
+    console.log(this.state.data)
+
+
+
+    // let genre = []
+    // e.forEach(el => {
+    //   genre = el.label + ' ' + genre
+    //   return genre
+    // })
+    //
+    // const data = {...this.state.data, musicStyles: genre}
+    //
+    //
+    // this.setState({ data })
+    // console.log(this.state.data)
+  }
+
 
 
 
@@ -37,10 +67,10 @@ class New extends React.Component {
 
     const token = Auth.getToken()
 
-    axios.post('/api/characters', this.state.data, {
+    axios.post('/api/venues', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/characters'))
+      .then(() => this.props.history.push('/venues'))
   }
 
   render() {
@@ -52,9 +82,10 @@ class New extends React.Component {
               <Form
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
+                handleSelect={this.handleSelect}
                 data={this.state.data}
                 errors={this.state.errors}
-                houses={this.state.houses}
+                venues={this.state.venues}
               />
             </div>
           </div>

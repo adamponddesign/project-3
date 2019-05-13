@@ -6,12 +6,12 @@
   "author": "Adam Pond <adam.pond@hotmail.co.uk>",
   "license": "MIT",
   "scripts": {
-      "run:client": "webpack-dev-server",
-      "run:server": "nodemon",
-      "seed": "node seeds",
-      "build": "webpack -p",
-      "start": "node index"
-    },
+    "run:client": "webpack-dev-server",
+    "run:server": "nodemon",
+    "seed": "node seeds",
+    "build": "webpack -p",
+    "start": "node index"
+  },
   "dependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
@@ -32,6 +32,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
+    "react-select": "^2.4.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.31.0",

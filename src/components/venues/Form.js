@@ -1,70 +1,218 @@
 import React from 'react'
+import Select from 'react-select'
 
-const Form = ({ handleChange, handleSubmit, data, errors, venues }) => {
+const musicGenres = [
+  { label: 'Jazz', value: 'Jazz' },
+  { label: 'Funk', value: 'Funk' },
+  { label: 'Techno', value: 'Techno' },
+  { label: 'House', value: 'House' },
+  { label: 'Disco', value: 'Disco' },
+  { label: 'Electronic', value: 'Electronic' },
+  { label: 'Rock', value: 'Rock' },
+  { label: 'Blues', value: 'Blues' },
+  { label: 'Metal', value: 'Metal' }
+]
+
+
+const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
   return (
     <form onSubmit={handleSubmit}>
+
+      {/*Name field*/}
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
           <input
             className="input"
             name="name"
-            placeholder="eg: Jon Snow"
+            placeholder="eg: The Red Lion"
             onChange={handleChange}
             value={data.name || ''}
           />
         </div>
         {errors.name && <div className="help is-danger">{errors.name}</div>}
       </div>
+
+      {/*Price Point field*/}
       <div className="field">
-        <label className="label">Image</label>
+        <label className="label">Price Point</label>
+        <div className="control">
+          <div className="select is-fullwidth">
+            <select
+              name="pricePoint"
+              onChange={handleChange}
+              value={data.pricePoint || ''}
+            >
+              <option value="" disabled>Please choose...</option>
+              <option value="Rent overdue">Rent overdue</option>
+              <option value="Rent due tomorrow">Rent due tomorrow</option>
+              <option value="Middle of the month">Middle of the month</option>
+              <option value="Just got paid">Just got paid</option>
+              <option value="Blowout">Blowout</option>
+            </select>
+          </div>
+        </div>
+        {errors.pricePoint && <div className="help is-danger">{errors.pricePoint}</div>}
+      </div>
+
+      {/*website field*/}
+      <div className="field">
+        <label className="label">Website</label>
         <div className="control">
           <input
             className="input"
-            name="image"
-            placeholder="eg: https://gameofthrones.fandom.com/jon-snow.png"
+            name="website"
+            placeholder="eg: www.theredlion.com"
             onChange={handleChange}
-            value={data.image || ''}
+            value={data.website || ''}
           />
         </div>
-        {errors.image && <div className="help is-danger">{errors.image}</div>}
+        {errors.website && <div className="help is-danger">{errors.website}</div>}
       </div>
+
+      {/*tel field*/}
       <div className="field">
-        <label className="label">Gender</label>
+        <label className="label">Tel</label>
+        <div className="control">
+          <input
+            className="input"
+            name="tel"
+            placeholder="eg: +442037547444"
+            onChange={handleChange}
+            value={data.tel || ''}
+          />
+        </div>
+        {errors.tel && <div className="help is-danger">{errors.tel}</div>}
+      </div>
+
+      {/*address1 field*/}
+      <div className="field">
+        <label className="label">Address Line 1</label>
+        <div className="control">
+          <input
+            className="input"
+            name="address1"
+            placeholder="eg: 123 Lion Lane"
+            onChange={handleChange}
+            value={data.address1 || ''}
+          />
+        </div>
+        {errors.address1 && <div className="help is-danger">{errors.address1}</div>}
+      </div>
+
+      {/*address2 field*/}
+      <div className="field">
+        <label className="label">Address Line 2</label>
+        <div className="control">
+          <input
+            className="input"
+            name="address2"
+            placeholder="eg: London"
+            onChange={handleChange}
+            value={data.address2 || ''}
+          />
+        </div>
+        {errors.address2 && <div className="help is-danger">{errors.address2}</div>}
+      </div>
+
+      {/*post code field*/}
+      <div className="field">
+        <label className="label">Post Code</label>
+        <div className="control">
+          <input
+            className="input"
+            name="postCode"
+            placeholder="eg: W1 3TP"
+            onChange={handleChange}
+            value={data.postCode || ''}
+          />
+        </div>
+        {errors.postCode && <div className="help is-danger">{errors.postCode}</div>}
+      </div>
+
+
+      {/*opening times field*/}
+      <div className="field">
+        <label className="label">Opening Times</label>
+        <div className="control">
+          <input
+            className="input"
+            name="openingTimes"
+            placeholder="eg: 10.00 - 23.00"
+            onChange={handleChange}
+            value={data.openingTimes || ''}
+          />
+        </div>
+        {errors.openingTimes && <div className="help is-danger">{errors.openingTimes}</div>}
+      </div>
+
+      {/*admission fee field*/}
+      <div className="field">
+        <label className="label">Admission Fee in £</label>
+        <div className="control">
+          <input
+            className="input"
+            name="admissionFee"
+            placeholder="eg: 10"
+            onChange={handleChange}
+            value={data.admissionFee || ''}
+          />
+        </div>
+        {errors.admissionFee && <div className="help is-danger">{errors.admissionFee}</div>}
+      </div>
+
+      {/*description field*/}
+      <div className="field">
+        <label className="label">Description</label>
+        <div className="control">
+          <textarea
+            className="textarea"
+            name="description"
+            placeholder="eg: Nice vibe, great pint"
+            onChange={handleChange}
+            value={data.description || ''}
+          />
+        </div>
+        {errors.description && <div className="help is-danger">{errors.description}</div>}
+      </div>
+
+      {/*Venue type field*/}
+      <div className="field">
+        <label className="label">Type of venue</label>
         <div className="control">
           <div className="select is-fullwidth">
             <select
-              name="gender"
+              name="venueType"
               onChange={handleChange}
-              value={data.gender || ''}
+              value={data.venueType || ''}
             >
               <option value="" disabled>Please choose...</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="Bar">Bar</option>
+              <option value="Boozer">Boozer</option>
+              <option value="Club">Club</option>
             </select>
           </div>
         </div>
-        {errors.gender && <div className="help is-danger">{errors.gender}</div>}
+        {errors.venueType && <div className="help is-danger">{errors.venueType}</div>}
       </div>
+
+      {/*Music style field*/}
       <div className="field">
-        <label className="label">Venue</label>
+        <label className="label">Music Styles</label>
         <div className="control">
-          <div className="select is-fullwidth">
-            <select
-              name="venue"
-              onChange={handleChange}
-              value={data.venue || ''}
-            >
-              <option value="" disabled>Please choose...</option>
-              {venues.map(venue =>
-                <option key={venue._id} value={venue._id}>{venue.name}</option>
-              )}
-            </select>
-          </div>
+
+          <Select
+
+            name="musicStyle"
+            options={musicGenres}
+            onChange={handleSelect}
+            isMulti
+          />
+
         </div>
-        {errors.gender && <div className="help is-danger">{errors.gender}</div>}
       </div>
+
+
 
       <button className="button is-primary">Submit</button>
     </form>
