@@ -27,7 +27,7 @@ mongoose.connect(dbUri, (err, db) => {
         address2: null,
         postCode: 'SE15 4TP',
         lat: '51.4679321',
-        long: '-0.0668924',
+        lng: '-0.0668924',
         images: './assets/fourquarter1.jpg',
         openingTimes: [
           {
@@ -81,7 +81,7 @@ mongoose.connect(dbUri, (err, db) => {
         address2: null,
         postCode: 'EC1V 9AQ',
         lat: '51.5239276',
-        long: '-0.0964486',
+        lng: '-0.0964486',
         images: './assets/Gibson1.jpg',
         openingTimes: [
           {

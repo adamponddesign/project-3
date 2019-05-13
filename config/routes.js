@@ -15,6 +15,7 @@ router.post('/register', authController.register)
 router.post('/login', authController.login)
 
 router.get('/search', yelpController.search)
+router.get('/businesses/:id', yelpController.businesses)
 
 
 module.exports = router

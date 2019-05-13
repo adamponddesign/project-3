@@ -1,29 +1,29 @@
 import React from 'react'
-import Select from 'react-select'
+// import Select from 'react-select'
 
 import Search from './Search'
 
-const musicGenres = [
-  { label: 'Jazz', value: 'Jazz' },
-  { label: 'Funk', value: 'Funk' },
-  { label: 'Techno', value: 'Techno' },
-  { label: 'House', value: 'House' },
-  { label: 'Disco', value: 'Disco' },
-  { label: 'Electronic', value: 'Electronic' },
-  { label: 'Rock', value: 'Rock' },
-  { label: 'Blues', value: 'Blues' },
-  { label: 'Metal', value: 'Metal' }
-]
+// const musicGenres = [
+//   { label: 'Jazz', value: 'Jazz' },
+//   { label: 'Funk', value: 'Funk' },
+//   { label: 'Techno', value: 'Techno' },
+//   { label: 'House', value: 'House' },
+//   { label: 'Disco', value: 'Disco' },
+//   { label: 'Electronic', value: 'Electronic' },
+//   { label: 'Rock', value: 'Rock' },
+//   { label: 'Blues', value: 'Blues' },
+//   { label: 'Metal', value: 'Metal' }
+// ]
 
 
-const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
+const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) => {
   return (
     <form onSubmit={handleSubmit}>
 
       <div className="field">
         <label className="label">Search</label>
         <div className="control">
-          <Search className="input" />
+          <Search className="input" handleSearchSelect={handleSearchSelect} />
         </div>
       </div>
 
@@ -56,7 +56,6 @@ const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
               <option value="Rent overdue">Rent overdue</option>
               <option value="Rent due tomorrow">Rent due tomorrow</option>
               <option value="Middle of the month">Middle of the month</option>
-              <option value="Just got paid">Just got paid</option>
               <option value="Blowout">Blowout</option>
             </select>
           </div>
@@ -205,7 +204,7 @@ const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
         {errors.venueType && <div className="help is-danger">{errors.venueType}</div>}
       </div>
 
-      {/*Music style field*/}
+      {/*Music style field
       <div className="field">
         <label className="label">Music Styles</label>
         <div className="control">
@@ -220,8 +219,7 @@ const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
 
         </div>
       </div>
-
-
+      */}
 
       <button className="button is-primary">Submit</button>
     </form>

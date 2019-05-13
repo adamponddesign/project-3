@@ -4,17 +4,21 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 
+const pricePoints = ['Rent overdue', 'Rent due tomorrow', 'Middle of the month', 'Blowout']
+
 class Search extends React.Component {
 
   constructor() {
     super()
     this.state = {
       options: null,
-      term: null
+      term: null,
+      menuIsOpen: true
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.getOptions = this.getOptions.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   handleChange({ target: { value } }) {
@@ -33,12 +37,55 @@ class Search extends React.Component {
     })
       .then(res => {
         return res.data.businesses.map(business => {
-          return { label: `${business.name}, ${business.location.address1}, ${business.location.zip_code}`, 
+          return {
+            label: `${business.name}, ${business.location.address1}, ${business.location.zip_code}`,
             value: business.id
           }
         })
       })
-      .then(options => this.setState({ options }))
+      .then(options => this.setState({ options, menuIsOpen: true }))
+  }
+
+  handleSelect(option) {
+    // load the full details using the ID
+    // call `this.props.handleSearchSelect` passing the business through
+    // clean up the data beforehand...
+    axios.get(`/api/businesses/${option.value}`, {
+      headers: {
+        Authorization: `Bearer ${Auth.getToken()}`
+      }
+    })
+      .then(res => {
+        const {
+          name,
+          price,
+          phone: tel,
+          lat,
+          lng,
+          location: {
+            address1,
+            address2,
+            zip_code: postCode
+          },
+          hours: [{
+            open: openingTimes
+          }]
+        } = res.data
+
+        const pricePoint = pricePoints[price.length-1]
+
+        const isOvernight = openingTimes.some(time => time.is_overnight)
+
+        console.log(isOvernight)
+
+        if(!isOvernight) {
+          console.log('This venue is not open after midnight any night of the week, and so can\'t be added.')
+          // if !isOvernight do something here...
+        }
+        //else ...
+        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng })
+        this.setState({ menuIsOpen: false, options: null, term: null })
+      })
   }
 
   render() {
@@ -47,13 +94,13 @@ class Search extends React.Component {
       this.state.options ? (
         <Select
           options={this.state.options}
-          onChange={this.getOptions}
-          menuIsOpen
+          onChange={this.handleSelect}
+          menuIsOpen={this.state.menuIsOpen}
         />
       ) : (
         <div className="field has-addons">
           <div className="control is-expanded">
-            <input className="input" onChange={this.handleChange} placeholder="Search by name or business type" />
+            <input className="input" value={this.state.term || ''} onChange={this.handleChange} placeholder="Search by name or business type" />
           </div>
           <div className="control">
             <button className="button is-info" type="button" onClick={this.getOptions}>Go</button>
@@ -62,8 +109,6 @@ class Search extends React.Component {
       )
     )
   }
-
-
 }
 
 export default Search

@@ -13,6 +13,19 @@ function searchRoute(req, res, next) {
     .catch(next)
 }
 
+function businessesRoute(req, res, next) {
+  rp({
+    url: `https://api.yelp.com/v3/businesses/${req.params.id}`,
+    headers: {
+      Authorization: `Bearer ${process.env.YELP_API_KEY}`
+    },
+    json: true
+  })
+    .then(response => res.json(response))
+    .catch(next)
+}
+
 module.exports = {
-  search: searchRoute
+  search: searchRoute,
+  businesses: businessesRoute
 }

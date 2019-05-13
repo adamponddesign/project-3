@@ -24,11 +24,12 @@ class FlashMessages extends React.Component {
   }
 
   render() {
+    if(!this.state.messages) return null
     // if there are no message, don't display anything
     // otherwise loop through the messages object, and display each message...
     return (
       <div>
-        {this.state.messages && Object.keys(this.state.messages).map(type =>
+        {Object.keys(this.state.messages).map(type =>
           <div key={type} className={`notification is-${type}`}>
             <div className="container">{this.state.messages[type]}</div>
           </div>
