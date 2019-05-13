@@ -60,8 +60,10 @@ class Search extends React.Component {
           name,
           price,
           phone: tel,
-          lat,
-          lng,
+          coordinates: {
+            latitude: lat,
+            longitude: lng
+          },
           location: {
             address1,
             address2,
@@ -72,24 +74,24 @@ class Search extends React.Component {
           }]
         } = res.data
 
+        const startTimes = openingTimes.map(day => day.start)
+        const endTimes = openingTimes.map(day => day.end)
+
+
         const pricePoint = pricePoints[price.length-1]
 
         const isOvernight = openingTimes.some(time => time.is_overnight)
 
-        console.log(isOvernight)
-
         if(!isOvernight) {
-          console.log('This venue is not open after midnight any night of the week, and so can\'t be added.')
-          // if !isOvernight do something here...
+        // if !isOvernight do something here...
         }
         //else ...
-        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng })
+        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng, startTimes, endTimes })
         this.setState({ menuIsOpen: false, options: null, term: null })
       })
   }
 
   render() {
-    console.log(this.state)
     return (
       this.state.options ? (
         <Select

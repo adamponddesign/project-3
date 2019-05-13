@@ -28,36 +28,24 @@ class New extends React.Component {
 
 
   handleSelect(e){
-    // console.log(e)
     e.forEach(el => {
       console.log(el.label)
     })
-    // console.log(value)
     const data = {...this.state.data, musicStyles: e}
 
-
     this.setState({ data })
-    console.log(this.state.data)
 
-
-
-    // let genre = []
-    // e.forEach(el => {
-    //   genre = el.label + ' ' + genre
-    //   return genre
-    // })
-    //
-    // const data = {...this.state.data, musicStyles: genre}
-    //
-    //
-    // this.setState({ data })
-    // console.log(this.state.data)
   }
 
 
   handleSearchSelect(business) {
     // clean up data here...
-    console.log(business)
+
+    // const result = business.openingTimes.map(day => ({ start: day.start, end: day.end }))
+    //
+    console.log('start times' + business.startTimes)
+    console.log('end times' + business.endTimes)
+
     this.setState({ data: business })
   }
 
@@ -68,7 +56,6 @@ class New extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state.data)
     e.preventDefault()
     const token = Auth.getToken()
 
