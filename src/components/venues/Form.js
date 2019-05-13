@@ -1,6 +1,8 @@
 import React from 'react'
 import Select from 'react-select'
 
+import Search from './Search'
+
 const musicGenres = [
   { label: 'Jazz', value: 'Jazz' },
   { label: 'Funk', value: 'Funk' },
@@ -17,6 +19,13 @@ const musicGenres = [
 const Form = ({ handleChange, handleSubmit, handleSelect, data, errors}) => {
   return (
     <form onSubmit={handleSubmit}>
+
+      <div className="field">
+        <label className="label">Search</label>
+        <div className="control">
+          <Search className="input" />
+        </div>
+      </div>
 
       {/*Name field*/}
       <div className="field">

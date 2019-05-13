@@ -2,6 +2,7 @@ const router = require('express').Router()
 const secureRoute = require('../lib/secureRoute')
 const venuesController = require('../controllers/venues')
 const authController = require('../controllers/auth')
+const yelpController = require('../controllers/yelp')
 
 router.get('/', (req, res) => res.json({ message: 'Welcome to the After Midnight API' }))
 
@@ -12,6 +13,8 @@ router.post('/venues', secureRoute, venuesController.create)
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)
+
+router.get('/search', yelpController.search)
 
 
 module.exports = router
