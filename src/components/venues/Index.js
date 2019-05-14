@@ -21,6 +21,7 @@ class Index extends React.Component {
   }
 
   render() {
+    console.log(this.state.venues)
     return (
       <section className="section">
         <div className="container">

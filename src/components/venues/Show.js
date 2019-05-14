@@ -20,12 +20,11 @@ class VenuesShow extends React.Component {
 
   render(){
     if(!this.state.venue) return null
-    const { _id, name, image, pricePoint, website, tel, address1, address2, postCode, lat, long, description, venueType } = this.state.venue
+    const { _id, name, images, pricePoint, website, tel, address1, address2, postCode, lat, long, description, venueType } = this.state.venue
 
     return(
       <div>
         <section className="hero">
-
           <div className="hero-body">
             <div className="container">
               <h1 className="title">
@@ -44,17 +43,16 @@ class VenuesShow extends React.Component {
 
             <div className="columns">
               <div className="column">
-                <div className="level">
-                  <div className="level-left">
-                    <p>{address1}</p>
-                    <p>{address2}</p>
-                    <div>Tel: {tel}</div>
-                  </div>
-                </div>
+                <figure className="image is-4by3">
+                  <img src={images[0]}/>
+                </figure>
               </div>
               <div className="column">
-              Second column
+                <p>{address1}</p>
+                <p>{address2}</p>
+                <div>Tel: {tel}</div>
               </div>
+
             </div>
 
 

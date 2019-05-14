@@ -16,7 +16,7 @@ const venueSchema = new mongoose.Schema({
   postCode: { type: String, unique: true, required: 'Please enter venue post code' },
   lat: { type: String, unique: true},
   lng: { type: String, unique: true},
-  images: [{}],
+  images: [{ type: String }],
   openingTimes: [{
     isOvernight: Boolean,
     start: String,
