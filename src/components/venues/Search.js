@@ -68,25 +68,62 @@ class Search extends React.Component {
             address1,
             address2,
             zip_code: postCode
-          },
-          hours: [{
-            open: openingTimes
-          }]
+          }
+          // hours: [{
+          //   open: openingTimes
+          // }]
         } = res.data
 
-        const startTimes = openingTimes.map(day => day.start)
-        const endTimes = openingTimes.map(day => day.end)
+        const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+        res.data.hours[0].open.forEach(day => day.day = week[day.day])
+        console.log(res.data.hours[0].open)
 
+
+
+        const openingTimes = {
+          mon: {
+            start: null,
+            end: null
+          },
+          tue: {
+            start: null,
+            end: null
+          },
+          wed: {
+            start: null,
+            end: null
+          },
+          thu: {
+            start: null,
+            end: null
+          },
+          fri: {
+            start: null,
+            end: null
+          },
+          sat: {
+            start: null,
+            end: null
+          },
+          sun: {
+            start: null,
+            end: null
+          }
+        }
+        res.data.hours[0].open.forEach(day =>  {
+          openingTimes[day.day].start = day.start
+          openingTimes[day.day].end = day.end
+        })
 
         const pricePoint = pricePoints[price.length-1]
 
-        const isOvernight = openingTimes.some(time => time.is_overnight)
+        // const isOvernight = openingTimes.some(time => time.is_overnight)
 
-        if(!isOvernight) {
-        // if !isOvernight do something here...
-        }
+        // if(!isOvernight) {
+        // // if !isOvernight do something here...
+        // }
         //else ...
-        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng, startTimes, endTimes })
+        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng })
         this.setState({ menuIsOpen: false, options: null, term: null })
       })
   }

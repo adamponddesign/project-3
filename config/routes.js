@@ -8,8 +8,10 @@ router.get('/', (req, res) => res.json({ message: 'Welcome to the After Midnight
 
 
 router.get('/venues', venuesController.index)
+router.get('/venues/:id', venuesController.show)
 
 router.post('/venues', secureRoute, venuesController.create)
+
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)

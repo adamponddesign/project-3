@@ -16,9 +16,10 @@ import Search from './Search'
 // ]
 
 
-const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) => {
+const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, data, errors}) => {
   return (
     <form onSubmit={handleSubmit}>
+
 
       {/*Yelp API search field*/}
       <div className="field">
@@ -26,11 +27,14 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
         <div className="control">
           <Search className="input" handleSearchSelect={handleSearchSelect} />
         </div>
+        <p className="help">Once you have a venue or business click GO to populate the fields below</p>
       </div>
+
+      <hr />
 
       {/*Name field*/}
       <div className="field">
-        <label className="label">Name</label>
+        <label className="label">Name:</label>
         <div className="control">
           <input
             className="input"
@@ -45,7 +49,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*address1 field*/}
       <div className="field">
-        <label className="label">Address Line 1</label>
+        <label className="label">Address Line 1:</label>
         <div className="control">
           <input
             className="input"
@@ -60,7 +64,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*address2 field*/}
       <div className="field">
-        <label className="label">Address Line 2</label>
+        <label className="label">Address Line 2:</label>
         <div className="control">
           <input
             className="input"
@@ -75,7 +79,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*post code field*/}
       <div className="field">
-        <label className="label">Post Code</label>
+        <label className="label">Post Code:</label>
         <div className="control">
           <input
             className="input"
@@ -90,7 +94,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*tel field*/}
       <div className="field">
-        <label className="label">Tel</label>
+        <label className="label">Tel:</label>
         <div className="control">
           <input
             className="input"
@@ -105,7 +109,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*website field*/}
       <div className="field">
-        <label className="label">Website</label>
+        <label className="label">Website:</label>
         <div className="control">
           <input
             className="input"
@@ -120,7 +124,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*description field*/}
       <div className="field">
-        <label className="label">Description</label>
+        <label className="label">Description:</label>
         <div className="control">
           <textarea
             className="textarea"
@@ -135,7 +139,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*lat field*/}
       <div className="field">
-        <label className="label">Latitude Coordinates</label>
+        <label className="label">Latitude Coordinates:</label>
         <div className="control">
           <input
             className="input"
@@ -149,7 +153,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*lng field*/}
       <div className="field">
-        <label className="label">Longitude Coordinates</label>
+        <label className="label">Longitude Coordinates:</label>
         <div className="control">
           <input
             className="input"
@@ -162,140 +166,46 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
       </div>
 
       {/*opening times fields*/}
-      <div className="label">Opening Times (24h format e.g. 0200)</div>
-      <div className="field is-horizontal"> {/*Mon*/}
-        <div className="field-label is-small">
-          <label className="label">Mon</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input
-                className="input is-small"
-                placeholder="Opens"
-                onChange={handleChange}
-                value={data.startTimes || ''}
-              />
-            </p>
+      <div className="label">Opening Times</div>
+      <p className="help">(24h format e.g. 0200)</p>
+
+      {Object.keys(data.openingTimes).map((day, i) =>
+        <div className="field is-horizontal" key={i}> {/*Mon*/}
+          <div className="field-label is-small">
+            <label className="label">{day.charAt(0).toUpperCase() + day.substr(1)}</label>
           </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input
-                className="input is-small"
-                placeholder="Closes"
-                onChange={handleChange}
-                value={data.endTimes || ''}
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="field is-horizontal"> {/*Tues*/}
-        <div className="field-label is-small">
-          <label className="label">Tues</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
+          <div className="field-body">
+            <div className="field">
+              <p className="control is-expanded">
+                <input
+                  className="input is-small"
+                  placeholder="Opens"
+                  name={day}
+                  data-type="start"
+                  onChange={handleTimes}
+                  value={data.openingTimes[day].start || ''}
+                />
+              </p>
+            </div>
+            <div className="field">
+              <p className="control is-expanded">
+                <input
+                  className="input is-small"
+                  placeholder="Closes"
+                  name={day}
+                  data-type="end"
+                  onChange={handleTimes}
+                  value={data.openingTimes[day].end || ''}
+                />
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="field is-horizontal"> {/*Wed*/}
-        <div className="field-label is-small">
-          <label className="label">Wed</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="field is-horizontal"> {/*Thur*/}
-        <div className="field-label is-small">
-          <label className="label">Thur</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="field is-horizontal"> {/*Fri*/}
-        <div className="field-label is-small">
-          <label className="label">Fri</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="field is-horizontal"> {/*Sat*/}
-        <div className="field-label is-small">
-          <label className="label">Sat</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="field is-horizontal"> {/*Sun*/}
-        <div className="field-label is-small">
-          <label className="label">Sun</label>
-        </div>
-        <div className="field-body">
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="text" placeholder="Opens" />
-            </p>
-          </div>
-          <div className="field">
-            <p className="control is-expanded">
-              <input className="input is-small" type="email" placeholder="Closes" />
-            </p>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/*Price Point field*/}
       <div className="field">
-        <label className="label">Price Point</label>
+        <label className="label">Price Point:</label>
         <div className="control">
           <div className="select is-fullwidth">
             <select
@@ -304,10 +214,10 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
               value={data.pricePoint || ''}
             >
               <option value="" disabled>Please choose...</option>
-              <option value="Rent overdue">Rent overdue</option>
-              <option value="Rent due tomorrow">Rent due tomorrow</option>
-              <option value="Middle of the month">Middle of the month</option>
-              <option value="Blowout">Blowout</option>
+              <option value="Rent overdue">(£) Rent overdue</option>
+              <option value="Rent due tomorrow">(££) Rent due tomorrow</option>
+              <option value="Middle of the month">(£££) Middle of the month</option>
+              <option value="Blowout">(££££) Blowout</option>
             </select>
           </div>
         </div>
@@ -316,7 +226,7 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
 
       {/*admission fee field*/}
       <div className="field">
-        <label className="label">Admission Fee (£)</label>
+        <label className="label">Admission Fee (£):</label>
         <div className="control">
           <input
             className="input"
@@ -325,13 +235,14 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
             onChange={handleChange}
             value={data.admissionFee || ''}
           />
+          <p className="help">Provide value just as a number with no symbol</p>
         </div>
         {errors.admissionFee && <div className="help is-danger">{errors.admissionFee}</div>}
       </div>
 
       {/*Venue type field*/}
       <div className="field">
-        <label className="label">Type of venue</label>
+        <label className="label">Type of venue:</label>
         <div className="control">
           <div className="select is-fullwidth">
             <select
@@ -340,9 +251,9 @@ const Form = ({ handleChange, handleSubmit, handleSearchSelect, data, errors}) =
               value={data.venueType || ''}
             >
               <option value="" disabled>Please choose...</option>
-              <option value="Bar">Bar</option>
-              <option value="Boozer">Boozer</option>
-              <option value="Club">Club</option>
+              <option value="Bar">Bar 🍹</option>
+              <option value="Boozer">Boozer 🍺</option>
+              <option value="Club">Club 🕺</option>
             </select>
           </div>
         </div>

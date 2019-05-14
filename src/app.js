@@ -15,6 +15,8 @@ import Register from './components/auth/Register'
 import VenuesNew from './components/venues/New'
 import VenuesIndex from './components/venues/Index'
 
+import VenuesShow from './components/venues/Show'
+
 import 'bulma'
 import './style.scss'
 
@@ -27,6 +29,7 @@ class App extends React.Component {
           <FlashMessages />
           <Switch>
             <SecureRoute path="/venues/new" component={VenuesNew} />
+            <Route path="/venues/:id" component={VenuesShow} />
             <Route path="/venues" component={VenuesIndex} />
 
             <Route path="/register" component={Register} />

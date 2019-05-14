@@ -15,9 +15,14 @@ function createRoute(req, res, next) {
     .catch(next)
 }
 
-
+function showRoute(req, res, next) {
+  Venue.findById(req.params.id)
+    .then(venue => res.json(venue))
+    .catch(next)
+}
 
 module.exports = {
   index: indexRoute,
-  create: createRoute
+  create: createRoute,
+  show: showRoute
 }
