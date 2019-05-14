@@ -18,4 +18,4 @@ app.use(bodyParser.json())
 app.use('/api', routes)
 app.use(errorHandler)
 
-app.listen(port, () => console.log( `it's after mightnight mofos on port ${port}`))
+app.listen(port, () => console.log( `It's after midnight mofos on port ${port}`))
