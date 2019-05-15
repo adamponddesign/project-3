@@ -4,9 +4,6 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 
-const pricePoints = ['Rent overdue', 'Rent due tomorrow', 'Middle of the month', 'Blowout']
-const daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
 class Search extends React.Component {
 
   constructor() {
@@ -57,44 +54,11 @@ class Search extends React.Component {
       }
     })
       .then(res => {
-        const {
-          name,
-          price,
-          phone: tel,
-          image_url: coverImage,
-          photos: images,
-          coordinates: {
-            latitude: lat,
-            longitude: lng
-          },
-          location: {
-            address1,
-            address2,
-            zip_code: postCode
-          }
-        } = res.data
-
-        let {
-          hours: [{
-            open: openingTimes
-          }]
-        } = res.data
-
-        const pricePoint = pricePoints[price.length-1]
-
-        openingTimes = openingTimes.map(time => {
-          time.day = daysOfTheWeek[time.day]
-          time.isOvernight = time.is_overnight
-          return time
-        })
-
-        const isOvernight = openingTimes.some(time => time.isOvernight)
-
-        if(!isOvernight){
-          return this.setState({ message: 'This venue is not open overnight ya nobber! Try another one...', menuIsOpen: false, options: null })
+        if(!res.data.isOvernight){
+          return this.setState({ message: 'This venue is not open overnight! Try another one...', menuIsOpen: false, options: null })
         }
 
-        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng, coverImage, images})
+        this.props.handleSearchSelect(res.data)
         this.setState({ menuIsOpen: false, options: null, term: null })
       })
   }

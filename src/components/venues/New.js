@@ -22,7 +22,8 @@ class New extends React.Component {
         ]
       },
       errors: {},
-      venues: []
+      venues: [],
+      musicStyles: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -39,24 +40,16 @@ class New extends React.Component {
   }
 
 
-  handleSelect(e){
-    e.forEach(el => {
-      console.log(el.label)
-    })
-    const data = {...this.state.data, musicStyles: e}
-
+  handleSelect(selected){
+    const musicStyles = selected.map(elem => elem.value)
+    const data = { ...this.state.data, musicStyles }
     this.setState({ data })
 
   }
 
-
   handleSearchSelect(business) {
-    // clean up data here...
-
-    // const result = business.openingTimes.map(day => ({ start: day.start, end: day.end }))
     this.setState({ data: business })
   }
-
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
@@ -81,17 +74,20 @@ class New extends React.Component {
     this.setState({ data })
   }
 
+
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state.data.name, 'name inside submit')
-    console.log(this.state.data, 'state inside submit')
+    //This returns an array of boolean values based on the isOvernight value
+    const isOvernight = this.state.data.openingTimes.some(time => time.isOvernight)
+    // `return` from function
+    if(!isOvernight){
+      return this.setState({ message: 'Please enter opening times that are running overnight', menuIsOpen: false, options: null })
+    }
     const token = Auth.getToken()
     axios.post('/api/venues', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/venues'))
-      // The below is an attempt to reset the data inside the object so that we can submit a new entry
-      // .then(this.setState({ data: null }))
   }
 
   render() {

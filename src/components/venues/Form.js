@@ -1,24 +1,25 @@
 import React from 'react'
-// import Select from 'react-select'
+import Select from 'react-select'
 
 import Search from './Search'
 
-// const musicGenres = [
-//   { label: 'Jazz', value: 'Jazz' },
-//   { label: 'Funk', value: 'Funk' },
-//   { label: 'Techno', value: 'Techno' },
-//   { label: 'House', value: 'House' },
-//   { label: 'Disco', value: 'Disco' },
-//   { label: 'Electronic', value: 'Electronic' },
-//   { label: 'Rock', value: 'Rock' },
-//   { label: 'Blues', value: 'Blues' },
-//   { label: 'Metal', value: 'Metal' }
-// ]
+const musicGenres = [
+  { label: 'Jazz', value: 'Jazz' },
+  { label: 'Funk', value: 'Funk' },
+  { label: 'Techno', value: 'Techno' },
+  { label: 'House', value: 'House' },
+  { label: 'Disco', value: 'Disco' },
+  { label: 'Electronic', value: 'Electronic' },
+  { label: 'Rock', value: 'Rock' },
+  { label: 'Blues', value: 'Blues' },
+  { label: 'Metal', value: 'Metal' },
+  { label: 'R&B', value: 'R&B' },
+  { label: 'Hip-Hop', value: 'Hip-Hop' }
+]
 
 
-const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, data, errors}) => {
-  console.log(data, 'data')
-  console.log(data.name, 'data.name')
+const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSearchSelect, data, errors}) => {
+
   return (
     <form onSubmit={handleSubmit}>
 
@@ -260,22 +261,19 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, dat
         {errors.venueType && <div className="help is-danger">{errors.venueType}</div>}
       </div>
 
-      {/*Music style field
+
       <div className="field">
         <label className="label">Music Styles</label>
         <div className="control">
-
           <Select
-
             name="musicStyle"
             options={musicGenres}
             onChange={handleSelect}
             isMulti
           />
-
         </div>
       </div>
-      */}
+
 
       <button className="button is-primary">Submit</button>
     </form>

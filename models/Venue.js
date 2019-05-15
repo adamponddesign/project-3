@@ -4,7 +4,6 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 
 // https://en.wikipedia.org/wiki/List_of_popular_music_genres#Genres
-const genres = ['Jazz', 'Funk', 'Techno', 'House', 'Disco', 'Electronic', 'Rock', 'Blues', 'Metal', 'None']
 
 const venueSchema = new mongoose.Schema({
   name: { type: String, required: 'Please enter venue name' },
@@ -27,7 +26,7 @@ const venueSchema = new mongoose.Schema({
   admissionFee: { type: Number },
   description: {type: String, required: true },
   venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
-  musicStyle: { type: String, enum: genres },
+  musicStyles: [{ type: String }],
   createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
