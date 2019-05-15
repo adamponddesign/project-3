@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css?family=Exo+2:200,400,700,900');
 
 :root {
   /* Base font size */
@@ -45,9 +45,6 @@ body {
   outline: none;
 }
 
-p.help{
-  color: white;
-}
 /* Animate neon flicker */
 @keyframes flicker {
 
@@ -100,4 +97,13 @@ a.navbar-item:hover {
 
 .button.is-primary {
   background-color: var(--neon-text-color);
+}
+
+p.help{
+  color: white;
+}
+
+p.warning{
+  color: red;
+  font-weight: bold;
 }

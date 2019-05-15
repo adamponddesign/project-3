@@ -28,7 +28,7 @@ mongoose.connect(dbUri, (err, db) => {
         postCode: 'SE15 4TP',
         lat: '51.4679321',
         lng: '-0.0668924',
-        images: './assets/fourquarter1.jpg',
+        coverImage: './assets/fourquarter1.jpg',
         openingTimes: [
           {
             'is_overnight': true,
@@ -82,7 +82,7 @@ mongoose.connect(dbUri, (err, db) => {
         postCode: 'EC1V 9AQ',
         lat: '51.5239276',
         lng: '-0.0964486',
-        images: './assets/Gibson1.jpg',
+        coverImage: './assets/Gibson1.jpg',
         openingTimes: [
           {
             'is_overnight': true,

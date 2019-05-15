@@ -36,10 +36,10 @@ class VenuesShow extends React.Component {
               <img src={images[0]}/>
             </div>
             <div className="item-2">
-              <img src={images[0]}/>
+              <img src={images[1]}/>
             </div>
             <div className="item-3">
-              <img src={images[0]}/>
+              <img src={images[2]}/>
             </div>
           </div>
           <div className="hero-head"></div>
@@ -67,7 +67,10 @@ class VenuesShow extends React.Component {
             <div className="columns">
               <div className="column">
                 <figure className="image is-4by3">
-                  <img src={images[0]}/>
+                  <img src={images[1]}/>
+                </figure>
+                <figure className="image is-4by3">
+                  <img src={images[2]}/>
                 </figure>
               </div>
               <div className="column">

@@ -16,6 +16,7 @@ const venueSchema = new mongoose.Schema({
   postCode: { type: String, unique: true, required: 'Please enter venue post code' },
   lat: { type: String },
   lng: { type: String },
+  coverImage: { type: String},
   images: [{ type: String }],
   openingTimes: [{
     isOvernight: Boolean,
@@ -24,7 +25,7 @@ const venueSchema = new mongoose.Schema({
     day: String
   }],
   admissionFee: { type: Number },
-  description: {type: String, unique: true },
+  description: {type: String, required: true },
   venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
   musicStyle: { type: String, enum: genres },
   createdBy: {

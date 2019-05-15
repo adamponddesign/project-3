@@ -61,6 +61,8 @@ class Search extends React.Component {
           name,
           price,
           phone: tel,
+          image_url: coverImage,
+          photos: images,
           coordinates: {
             latitude: lat,
             longitude: lng
@@ -89,10 +91,10 @@ class Search extends React.Component {
         const isOvernight = openingTimes.some(time => time.isOvernight)
 
         if(!isOvernight){
-          return this.setState({ message: 'Invalid', menuIsOpen: false, options: null })
+          return this.setState({ message: 'This venue is not open overnight ya nobber! Try another one...', menuIsOpen: false, options: null })
         }
 
-        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng })
+        this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng, coverImage, images})
         this.setState({ menuIsOpen: false, options: null, term: null })
       })
   }
@@ -116,7 +118,7 @@ class Search extends React.Component {
             </div>
           </div>
         )}
-        {this.state.message && <p>{this.state.message}</p>}
+        {this.state.message && <p className="warning">{this.state.message}</p>}
       </div>
     )
   }

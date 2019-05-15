@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({ name, images, address1 }) => {
+const Card = ({ name, coverImage, address1 }) => {
   return (
     <div className="card">
       <div className="card-header">
@@ -8,7 +8,7 @@ const Card = ({ name, images, address1 }) => {
       </div>
       <div className="card-image">
         <figure className="image">
-          <img src={images} alt={name} />
+          <img src={coverImage} alt={name} />
         </figure>
       </div>
       <div className="card-content">
