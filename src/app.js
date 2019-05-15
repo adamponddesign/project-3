@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Favicon from 'react-favicon'
 
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -25,6 +26,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <Favicon url="./assets/blueOwl1svg.png" />
           <Navbar />
           <FlashMessages />
           <Switch>

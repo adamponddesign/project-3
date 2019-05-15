@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
 import Card from './Card'
-import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
+import ReactMapboxGl, { ZoomControl, Popup, Marker } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
   accessToken: process.env.MAPBOX_API_TOKEN,
@@ -19,65 +19,173 @@ class Index extends React.Component {
     this.state = {
       venues: [],
       center: {
+        lat: -0.127683,
+        lng: 51.507332
+      },
+      userCurrentLocation: {
         lat: -0.127854,
         lng: 51.508733
       },
-      toggleSidebar: false
+      marker: {},
+      markerClick: false,
+      zoom: 11
     }
+
+    this.popUpShow = this.popUpShow.bind(this)
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords
-      this.setState({ center: { lng: latitude, lat: longitude }
-      })
+      this.setState({ userCurrentLocation: { lng: latitude, lat: longitude }})
     })
     axios('/api/venues')
       .then(res => this.setState({ venues: res.data }))
   }
 
 
-  render() {
-    console.log(this.state.venues)
 
-    // const { lat, lng } = this.state.venues
+  popUpShow(marker){
+    this.setState({ marker, markerClick: !this.state.markerClick })
+    this.setState({ center: { lat: marker.lng, lng: marker.lat } })
+    this.setState({ zoom: 14 })
+    console.log(this.state.marker)
+  }
+
+
+
+  centerMapOnUserFunction(){
+    console.log('button clicked')
+    this.setState({ center: { lat: this.state.userCurrentLocation.lat, lng: this.state.userCurrentLocation.lng } })
+  }
+
+
+
+
+
+  render() {
+    console.log('marker clicked ' + this.state.markerClick)
+
+
     return (
       <main>
         <div className="map">     {/*  map visual area  */}
+
+
+
+
           <Map
+
             style='mapbox://styles/adampond/cjvktkg640gxm1cnuwe0ffkhx'       //  import mapbox style
             center = {[ this.state.center.lat, this.state.center.lng ]}      //  set starting coordinates from state
-            zoom={[11]}          // initial zoom
+            zoom={[this.state.zoom]}           // initial zoom
             containerStyle={{
-              height: '70vh',          // set map size
+              height: '100vh',          // set map size
               width: '100vw'
             }}>
 
-            {this.state.venues.map(marker =>           // get coordinates for each database item and plot on map using markers
+            {this.state.venues.map(marker =>           // get coordinates for each database item and plot on map using venues
 
               <Marker
                 key={marker._id}
+
                 coordinates={[marker.lng, marker.lat]}
+                onClick={() => this.popUpShow(marker)}
                 anchor="bottom">
                 <img
-                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Owl_%2813455%29_-_The_Noun_Project.svg/720px-Owl_%2813455%29_-_The_Noun_Project.svg.png'
-                  width='20px'
-                /> {/*  marker icon */}
+                  src='./assets/blueOwl1svg.png'
+                  width='60px'
+                />
               </Marker>
+
+
             )}
-            <Marker key={this.state.center.id}
-              coordinates={[ this.state.center.lat, this.state.center.lng ]}
+
+
+            <Marker key={this.state.userCurrentLocation.id}
+              coordinates={[ this.state.userCurrentLocation.lat, this.state.userCurrentLocation.lng ]}
               anchor="bottom">
               <img
                 src='http://hubscope.com/wp-content/uploads/2016/03/you-are-here-icon.png'
                 width='55px'
-              /> {/*  marker icon */}
+              />
             </Marker>
+
+            {this.state.markerClick &&
+
+              <Popup
+                // where the pop up will be positioned
+                coordinates={[this.state.marker.lng, this.state.marker.lat]}
+                anchor="bottom-left"
+                offset={[13, -38]}
+
+              >
+                {/* what to render in the popup */}
+                <div className="marker-popup-content">
+                  <p>{this.state.marker.name}</p>
+                  <p>{this.state.marker.address1}</p>
+                  <p>{this.state.marker.postCode}</p>
+                  <p>{this.state.marker.name}</p>
+
+                  <Link to={`/venues/${this.state.marker._id}`}>
+                    MORE INFO
+                  </Link>
+
+
+
+
+                </div>
+
+
+
+              </Popup>}
+            <ZoomControl/>
+
+
+            <div className="box has-text-centered">
+              <button
+                className="button locateButton has-text-centered"
+                onClick={() => this.centerMapOnUserFunction()}
+              >Center the map where I am</button>
+            </div>
+
+
+
+            
+
+
+
           </Map>
+
+
+
         </div>
 
 
-        <div className="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {/*  <div className="container">
           {Auth.isAuthenticated() &&  <Link to="/venues/new" className="button">Add venue</Link>}
           <hr/>
         </div>
@@ -94,7 +202,8 @@ class Index extends React.Component {
 
             </div>
           </div>
-        </section>
+
+        </section> */}
       </main>
     )
   }

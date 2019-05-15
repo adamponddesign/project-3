@@ -36,7 +36,7 @@ class Navbar extends React.Component {
 
           <div className="navbar-brand">
             {/* Branding and burger menu */}
-            <Link to="/" className="navbar-item display is-size-4">After Midnight</Link>
+            <Link to="/" id="navbarLogo" className="navbar-item display is-size-4">Aft<span id="lettere">e</span>r Midnigh<span id="lettert">t</span></Link>
 
             <a
               role="button"
