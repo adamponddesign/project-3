@@ -5,6 +5,7 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 
 const pricePoints = ['Rent overdue', 'Rent due tomorrow', 'Middle of the month', 'Blowout']
+const daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 class Search extends React.Component {
 
@@ -69,60 +70,28 @@ class Search extends React.Component {
             address2,
             zip_code: postCode
           }
-          // hours: [{
-          //   open: openingTimes
-          // }]
         } = res.data
 
-        const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-        res.data.hours[0].open.forEach(day => day.day = week[day.day])
-        console.log(res.data.hours[0].open)
-
-
-
-        const openingTimes = {
-          mon: {
-            start: null,
-            end: null
-          },
-          tue: {
-            start: null,
-            end: null
-          },
-          wed: {
-            start: null,
-            end: null
-          },
-          thu: {
-            start: null,
-            end: null
-          },
-          fri: {
-            start: null,
-            end: null
-          },
-          sat: {
-            start: null,
-            end: null
-          },
-          sun: {
-            start: null,
-            end: null
-          }
-        }
-        res.data.hours[0].open.forEach(day =>  {
-          openingTimes[day.day].start = day.start
-          openingTimes[day.day].end = day.end
-        })
+        let {
+          hours: [{
+            open: openingTimes
+          }]
+        } = res.data
 
         const pricePoint = pricePoints[price.length-1]
 
-        // const isOvernight = openingTimes.some(time => time.is_overnight)
+        openingTimes = openingTimes.map(time => {
+          time.day = daysOfTheWeek[time.day]
+          time.isOvernight = time.is_overnight
+          return time
+        })
 
-        // if(!isOvernight) {
-        // // if !isOvernight do something here...
-        // }
-        //else ...
+        const isOvernight = openingTimes.some(time => time.isOvernight)
+
+        if(!isOvernight){
+          return this.setState({ message: 'Invalid', menuIsOpen: false, options: null })
+        }
+
         this.props.handleSearchSelect({ name, pricePoint, tel, address1, address2, postCode, openingTimes, lat, lng })
         this.setState({ menuIsOpen: false, options: null, term: null })
       })
@@ -130,22 +99,25 @@ class Search extends React.Component {
 
   render() {
     return (
-      this.state.options ? (
-        <Select
-          options={this.state.options}
-          onChange={this.handleSelect}
-          menuIsOpen={this.state.menuIsOpen}
-        />
-      ) : (
-        <div className="field has-addons">
-          <div className="control is-expanded">
-            <input className="input" value={this.state.term || ''} onChange={this.handleChange} placeholder="Search by name or business type" />
+      <div>
+        {this.state.options ? (
+          <Select
+            options={this.state.options}
+            onChange={this.handleSelect}
+            menuIsOpen={this.state.menuIsOpen}
+          />
+        ) : (
+          <div className="field has-addons">
+            <div className="control is-expanded">
+              <input className="input" value={this.state.term || ''} onChange={this.handleChange} placeholder="Search by name or business type" />
+            </div>
+            <div className="control">
+              <button className="button is-info" type="button" onClick={this.getOptions}>Go</button>
+            </div>
           </div>
-          <div className="control">
-            <button className="button is-info" type="button" onClick={this.getOptions}>Go</button>
-          </div>
-        </div>
-      )
+        )}
+        {this.state.message && <p>{this.state.message}</p>}
+      </div>
     )
   }
 }

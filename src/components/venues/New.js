@@ -11,36 +11,15 @@ class New extends React.Component {
 
     this.state = {
       data: {
-        openingTimes: {
-          mon: {
-            start: null,
-            end: null
-          },
-          tue: {
-            start: null,
-            end: null
-          },
-          wed: {
-            start: null,
-            end: null
-          },
-          thu: {
-            start: null,
-            end: null
-          },
-          fri: {
-            start: null,
-            end: null
-          },
-          sat: {
-            start: null,
-            end: null
-          },
-          sun: {
-            start: null,
-            end: null
-          }
-        }
+        openingTimes: [
+          { day: 'Monday', start: '', end: '' },
+          { day: 'Tuesday', start: '', end: '' },
+          { day: 'Wednesday', start: '', end: '' },
+          { day: 'Thursday', start: '', end: '' },
+          { day: 'Friday', start: '', end: '' },
+          { day: 'Saturday', start: '', end: '' },
+          { day: 'Sunday', start: '', end: '' }
+        ]
       },
       errors: {},
       venues: []
@@ -75,10 +54,6 @@ class New extends React.Component {
     // clean up data here...
 
     // const result = business.openingTimes.map(day => ({ start: day.start, end: day.end }))
-
-    console.log('start times' + typeof business.startTimes)
-    console.log('end times' + typeof business.endTimes)
-
     this.setState({ data: business })
   }
 
@@ -89,26 +64,34 @@ class New extends React.Component {
   }
 
   handleTimes(e) {
-    console.log(e.target.value, 'handle times value')
-    console.log(e.target.dataset.type, 'dataset')
-    const days = {...this.state.data.openingTimes[e.target.name], [e.target.dataset.type]: e.target.value }
-    const openingTimes = {...this.state.data.openingTimes, [e.target.name]: days}
+    const [ day, point ] = e.target.name.split('|')
+    const index = this.state.data.openingTimes.findIndex(time => time.day === day)
+    const time = { ...this.state.data.openingTimes[index] }
+    console.log(day, point, index, time)
+    time[point] = e.target.value
+    time.isOvernight = time.end < time.start && time.end < '2359'
 
-    console.log(openingTimes, 'openingtimes')
-    this.setState({data: { openingTimes }})
-    // this.setState({ openingTimes: {[field]: e.target.value} }, this.handleChange({target: {[e.target.name]: e.target.value}}))
+    const openingTimes = [
+      ...this.state.data.openingTimes.slice(0, index),
+      time,
+      ...this.state.data.openingTimes.slice(index+1)
+    ]
+
+    const data = { ...this.state.data, openingTimes }
+    this.setState({ data })
   }
 
   handleSubmit(e) {
     e.preventDefault()
+    console.log(this.state.data.name, 'name inside submit')
+    console.log(this.state.data, 'state inside submit')
     const token = Auth.getToken()
-
     axios.post('/api/venues', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/venues'))
       // The below is an attempt to reset the data inside the object so that we can submit a new entry
-      .then(this.setState({ data: null }))
+      // .then(this.setState({ data: null }))
   }
 
   render() {

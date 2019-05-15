@@ -17,9 +17,10 @@ import Search from './Search'
 
 
 const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, data, errors}) => {
+  console.log(data, 'data')
+  console.log(data.name, 'data.name')
   return (
     <form onSubmit={handleSubmit}>
-
 
       {/*Yelp API search field*/}
       <div className="field">
@@ -166,13 +167,14 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, dat
       </div>
 
       {/*opening times fields*/}
+
       <div className="label">Opening Times</div>
       <p className="help">(24h format e.g. 0200)</p>
 
-      {Object.keys(data.openingTimes).map((day, i) =>
-        <div className="field is-horizontal" key={i}> {/*Mon*/}
+      {data.openingTimes.map(time =>
+        <div className="field is-horizontal" key={time.day}> {/*Mon*/}
           <div className="field-label is-small">
-            <label className="label">{day.charAt(0).toUpperCase() + day.substr(1)}</label>
+            <label className="label">{time.day}</label>
           </div>
           <div className="field-body">
             <div className="field">
@@ -180,10 +182,9 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, dat
                 <input
                   className="input is-small"
                   placeholder="Opens"
-                  name={day}
-                  data-type="start"
+                  name={`${time.day}|start`}
                   onChange={handleTimes}
-                  value={data.openingTimes[day].start || ''}
+                  value={time.start || ''}
                 />
               </p>
             </div>
@@ -192,10 +193,9 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSearchSelect, dat
                 <input
                   className="input is-small"
                   placeholder="Closes"
-                  name={day}
-                  data-type="end"
+                  name={`${time.day}|end`}
                   onChange={handleTimes}
-                  value={data.openingTimes[day].end || ''}
+                  value={time.end || ''}
                 />
               </p>
             </div>

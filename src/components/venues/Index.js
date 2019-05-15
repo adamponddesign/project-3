@@ -7,7 +7,8 @@ import Card from './Card'
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
-  accessToken: process.env.MAPBOX_API_TOKEN
+  accessToken: process.env.MAPBOX_API_TOKEN,
+  scrollZoom: false
 })
 
 class Index extends React.Component {
@@ -46,7 +47,7 @@ class Index extends React.Component {
           <Map
             style='mapbox://styles/adampond/cjvktkg640gxm1cnuwe0ffkhx'       //  import mapbox style
             center = {[ this.state.center.lat, this.state.center.lng ]}      //  set starting coordinates from state
-            zoom = {[11]}          // initial zoom
+            zoom={[11]}          // initial zoom
             containerStyle={{
               height: '70vh',          // set map size
               width: '100vw'

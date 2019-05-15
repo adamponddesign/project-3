@@ -24,6 +24,7 @@ class Navbar extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps.location.pathname !== this.props.location.pathname) {
+      window.scroll(0,0)
       this.setState({ active: false })
     }
   }
