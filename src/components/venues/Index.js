@@ -58,13 +58,19 @@ class Index extends React.Component {
                 key={marker._id}
                 coordinates={[marker.lng, marker.lat]}
                 anchor="bottom">
-                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Owl_%2813455%29_-_The_Noun_Project.svg/720px-Owl_%2813455%29_-_The_Noun_Project.svg.png' width='20px'/> {/*  marker icon */}
+                <img
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Owl_%2813455%29_-_The_Noun_Project.svg/720px-Owl_%2813455%29_-_The_Noun_Project.svg.png'
+                  width='20px'
+                /> {/*  marker icon */}
               </Marker>
             )}
             <Marker key={this.state.center.id}
               coordinates={[ this.state.center.lat, this.state.center.lng ]}
               anchor="bottom">
-              <img src='http://hubscope.com/wp-content/uploads/2016/03/you-are-here-icon.png' width='55px'/> {/*  marker icon */}
+              <img
+                src='http://hubscope.com/wp-content/uploads/2016/03/you-are-here-icon.png'
+                width='55px'
+              /> {/*  marker icon */}
             </Marker>
           </Map>
         </div>

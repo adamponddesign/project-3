@@ -5,8 +5,7 @@ const Home = () => {
     <section className="hero is-fullheight-with-navbar">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title display">After Midnight</h1>
-          <h2 className="subtitle">{'We\'re gonna let it all hang out'}</h2>
+          <h1 id="homeLogo"className="title display">After Midnight</h1>
         </div>
       </div>
     </section>
