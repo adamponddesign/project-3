@@ -90,7 +90,7 @@ class Index extends React.Component {
                 onClick={() => this.popUpShow(marker)}
                 anchor="bottom">
                 <img
-                  src='./assets/blueOwl1svg.png'
+                  src='/assets/blueOwl1svg.png'
                   width='60px'
                 />
               </Marker>
