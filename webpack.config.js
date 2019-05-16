@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 const EnvPlugin = process.env.NODE_ENV === 'production' ?  (
-  new webpack.EnviromnentPlugin({ ...process.env })
+  new webpack.EnvironmentPlugin({ ...process.env })
 ) : (
   new Dotenv()
 )
