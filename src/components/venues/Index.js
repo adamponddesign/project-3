@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import Auth from '../../lib/Auth'
 
 // import Card from './Card'
-import ReactMapboxGl, { ZoomControl, Popup, Marker } from 'react-mapbox-gl'
+import ReactMapboxGl, { Popup, Marker } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
   accessToken: process.env.MAPBOX_API_TOKEN
@@ -136,7 +136,7 @@ class Index extends React.Component {
 
 
               </Popup>}
-            {/*   <ZoomControl/>   */}
+          
 
 
             <div className="box has-text-centered">
