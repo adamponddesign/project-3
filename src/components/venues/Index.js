@@ -60,9 +60,6 @@ class Index extends React.Component {
   }
 
 
-
-
-
   render() {
     console.log('marker clicked ' + this.state.markerClick)
 
