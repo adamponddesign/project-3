@@ -206,6 +206,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             </div>
           </div>
         )}
+        {errors.openingTimes && <div className="help is-danger">{errors.openingTimes}</div>}
 
         {/*Price Point field*/}
         <div className="field">
