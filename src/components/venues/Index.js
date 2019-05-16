@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Auth from '../../lib/Auth'
+// import Auth from '../../lib/Auth'
 
-import Card from './Card'
+// import Card from './Card'
 import ReactMapboxGl, { ZoomControl, Popup, Marker } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
-  accessToken: process.env.MAPBOX_API_TOKEN,
-  scrollZoom: false
+  accessToken: process.env.MAPBOX_API_TOKEN
+  // scrollZoom: false
 })
 
 class Index extends React.Component {
@@ -28,7 +28,7 @@ class Index extends React.Component {
       },
       marker: {},
       markerClick: false,
-      zoom: 11
+      zoom: 11.5
     }
 
     this.popUpShow = this.popUpShow.bind(this)
@@ -48,7 +48,7 @@ class Index extends React.Component {
   popUpShow(marker){
     this.setState({ marker, markerClick: !this.state.markerClick })
     this.setState({ center: { lat: marker.lng, lng: marker.lat } })
-    this.setState({ zoom: 14 })
+    this.setState({ zoom: 13 })
     console.log(this.state.marker)
   }
 
@@ -109,6 +109,7 @@ class Index extends React.Component {
                 src='http://hubscope.com/wp-content/uploads/2016/03/you-are-here-icon.png'
                 width='55px'
               />
+
             </Marker>
 
             {this.state.markerClick &&
@@ -122,13 +123,12 @@ class Index extends React.Component {
               >
                 {/* what to render in the popup */}
                 <div className="marker-popup-content">
-                  <p>{this.state.marker.name}</p>
+                  <p className="is-size-6">{this.state.marker.name}</p>
                   <p>{this.state.marker.address1}</p>
                   <p>{this.state.marker.postCode}</p>
-                  <p>{this.state.marker.name}</p>
 
                   <Link to={`/venues/${this.state.marker._id}`}>
-                    MORE INFO
+                    More info
                   </Link>
 
 
@@ -139,19 +139,19 @@ class Index extends React.Component {
 
 
               </Popup>}
-            <ZoomControl/>
+            {/*   <ZoomControl/>   */}
 
 
             <div className="box has-text-centered">
               <button
-                className="button locateButton has-text-centered"
+                className="button locateButton has-text-centered is-size-7"
                 onClick={() => this.centerMapOnUserFunction()}
               >Center the map where I am</button>
             </div>
 
 
 
-            
+
 
 
 
