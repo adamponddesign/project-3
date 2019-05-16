@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Exo+2:200,400,700,900');
-
+@import url('https://fonts.googleapis.com/css?family=Exo+2:200i,400,700,900');
+ hr {
+  margin: 1.0rem 0;
+ }
 :root {
   /* Base font size */
   font-size: 20px;
@@ -11,6 +13,8 @@
 
 body {
   font-family: 'Exo 2', sans-serif;
+  font-style: italic;
+  font-weight: 900;
   background: #000;
   min-height: 100vh;
   color: var(--neon-text-color)
@@ -35,24 +39,20 @@ body {
   font-weight: 200;
   font-style: italic;
   color: #fff;
-  padding: 0.5rem 0.6rem 0.5rem;
+  padding: 0.3rem 0.4rem 0.4rem;
   border: 0.1rem solid #fff;
   border-radius: 0.5em;
   text-transform: uppercase;
-
   animation: navbarflicker 5.2s infinite alternate;
-
 }
 
 #lettere {
-  animation: letterflicker 2s infinite alternate;
+  animation: letterflicker 4s infinite alternate;
 }
 
 #lettert {
-  animation: letterflicker 2s infinite alternate;
+  animation: letterflicker 2.1s infinite alternate;
 }
-
-
 
 #homeLogo::-moz-selection {
   background-color: var(--neon-border-color);
@@ -96,7 +96,6 @@ body {
         box-shadow: none;
     }
 }
-
 
 /* Animate neon flicker */
 @keyframes navbarflicker {
@@ -156,37 +155,128 @@ body {
 // ----------------------------------------------------------------------------------
 
 
+
+
+.mapboxgl-popup-content {
+  padding: 0.6rem 0.6rem 0.6rem;
+  border: 0.2rem solid #808080;
+  border-radius: 0.5em;
+  background-color: black;
+  color: #808080;
+}
+
+#popup-link-to-showpage {
+  color: #808080;
+}
+
+#popup-link-to-showpage:hover {
+  color: #f40;
+
+}
+
+
+
+
+
+.mapboxgl-popup-content:hover {
+  padding: 0.6rem 0.6rem 0.6rem;
+  border: 0.2rem solid #fff;
+  border-radius: 0.5em;
+  background-color: black;
+  color: #fff;
+  box-shadow:
+    0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 5rem var(--neon-border-color),
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 0.1rem var(--neon-border-color);
+}
+
+
+
+
 .hero-body {
   padding: 10px;
 }
 
 .locateButton {
-  background: var(--neon-text-color);
-  color: white;
+  margin-top: -25px;
+  font-family: 'Exo 2', sans-serif;
+  background-color: black;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #808080;
+  padding: 0.2rem 0.2rem 0.2rem;
+  border: 0.1rem solid #808080;
+  border-radius: 0.5em;
+
 }
 
 .locateButton:hover {
-  background: #345aff;
-  color: white;
+  font-family: 'Exo 2', sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #fff;
+  padding: 0.2rem 0.2rem 0.2rem;
+  border: 0.1rem solid #fff;
+  border-radius: 0.5em;
+  box-shadow:
+    0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 5rem var(--neon-border-color),
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 0.1rem var(--neon-border-color);
 }
 
 
 
 .navbar {
   background-color: black;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 
 }
 
 .navbar-item {
-  color: var(--neon-text-color);
-  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #808080;
+  // padding: 0.2rem 0.2rem 0.2rem;
+  border: 0.1rem solid #808080;
+  border-radius: 0.5em;
+  text-transform: uppercase;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 a.navbar-item:hover {
-  background-color: var(--neon-border-color);
-  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #fff;
+  // padding: 0.2rem 0.2rem 0.2rem;
+  border: 0.1rem solid #fff;
+  border-radius: 0.5em;
+  box-shadow:
+    0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 5rem var(--neon-border-color),
+    0 0 2rem var(--neon-border-color),
+    inset 0 0 0.1rem var(--neon-border-color);
+}
+
+a:hover {
+color: white;
 }
 
 .label {
@@ -202,6 +292,45 @@ p.help{
 }
 
 p.warning{
-  color: red;
+  color: #f40;
   font-weight: bold;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
+
+.table th {
+  color: #f40;
+}
+
+.table thead {
+  color: #f40;
+}
+
+.table thead td, .table thead th {
+  color: #f40;
+}
+
+.button.is-info {
+  background-color: #f40;
+}
+
+.button.is-info:hover {
+  color: white;
+  background-color: #08f;
+}
+
+.navbar-menu.is-active {
+  background-color: black;
+}
+
+.navbar-burger {
+  color: #f40;
+}
+
+.navbar-burger:hover {
+  color: white;
 }

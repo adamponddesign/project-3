@@ -48,7 +48,7 @@ class Index extends React.Component {
   popUpShow(marker){
     this.setState({ marker, markerClick: !this.state.markerClick })
     this.setState({ center: { lat: marker.lng, lng: marker.lat } })
-    this.setState({ zoom: 12 })
+    this.setState({ zoom: 13 })
     console.log(this.state.marker)
   }
 
@@ -125,7 +125,7 @@ class Index extends React.Component {
                   <p>{this.state.marker.postCode}</p>
 
                   <Link to={`/venues/${this.state.marker._id}`}>
-                    More info
+                    <p id="popup-link-to-showpage" className="is-size-6">More info</p>
                   </Link>
 
 
@@ -136,12 +136,12 @@ class Index extends React.Component {
 
 
               </Popup>}
-          
+
 
 
             <div className="box has-text-centered">
               <button
-                className="button locateButton has-text-centered is-size-7"
+                className="button locateButton has-text-centered is-size-6"
                 onClick={() => this.centerMapOnUserFunction()}
               >Center the map where I am</button>
             </div>
