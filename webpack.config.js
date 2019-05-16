@@ -3,6 +3,12 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
+const EnvPlugin = process.env.NODE_ENV === 'production' ?  (
+  new webpack.EnviromnentPlugin({ ...process.env })
+) : (
+  new Dotenv()
+)
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -38,7 +44,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv(),
+    EnvPlugin,
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',
