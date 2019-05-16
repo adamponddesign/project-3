@@ -48,7 +48,7 @@ class Index extends React.Component {
   popUpShow(marker){
     this.setState({ marker, markerClick: !this.state.markerClick })
     this.setState({ center: { lat: marker.lng, lng: marker.lat } })
-    this.setState({ zoom: 13 })
+    this.setState({ zoom: 12 })
     console.log(this.state.marker)
   }
 
@@ -80,7 +80,7 @@ class Index extends React.Component {
             center = {[ this.state.center.lat, this.state.center.lng ]}      //  set starting coordinates from state
             zoom={[this.state.zoom]}           // initial zoom
             containerStyle={{
-              height: '100vh',          // set map size
+              height: '85vh',          // set map size
               width: '100vw'
             }}>
 
@@ -118,7 +118,7 @@ class Index extends React.Component {
                 // where the pop up will be positioned
                 coordinates={[this.state.marker.lng, this.state.marker.lat]}
                 anchor="bottom-left"
-                offset={[13, -38]}
+                offset={[-2, -40]}
 
               >
                 {/* what to render in the popup */}
