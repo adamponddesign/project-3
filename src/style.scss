@@ -13,6 +13,7 @@ body {
   font-family: 'Exo 2', sans-serif;
   background: #000;
   min-height: 100vh;
+  color: var(--neon-text-color)
 }
 
 #homeLogo {
@@ -153,6 +154,11 @@ body {
 
 
 // ----------------------------------------------------------------------------------
+
+
+.hero-body {
+  padding: 10px;
+}
 
 .locateButton {
   background: var(--neon-text-color);

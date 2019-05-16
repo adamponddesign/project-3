@@ -38,6 +38,7 @@
     "react-favicon": "^0.0.16",
     "react-map-gl": "^4.1.2",
     "react-mapbox-gl": "^4.4.0",
+    "react-responsive-carousel": "^3.1.49",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.3",
     "request": "^2.88.0",

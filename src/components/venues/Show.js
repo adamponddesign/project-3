@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 // import bulmaCarousel from '../../../node_modules/bulma-carousel/dist/js/bulma-carousel.js'
 
+
 class VenuesShow extends React.Component {
   constructor(props){
     super(props)
@@ -25,7 +26,7 @@ class VenuesShow extends React.Component {
 
   render(){
     if(!this.state.venue) return null
-    const { _id, name, images, pricePoint, website, tel, address1, address2, postCode, lat, long, description, venueType } = this.state.venue
+    const { _id, name, images, pricePoint, website, coverImage, tel, address1, address2, postCode, lat, long, description, venueType } = this.state.venue
 
     return(
       <div>
@@ -50,22 +51,25 @@ class VenuesShow extends React.Component {
         <section className="hero">
           <div className="hero-body">
             <div className="container">
-              <h1 className="title">
+              <h1 className="is-size-1">
                 {name}
               </h1>
-              <h2 className="subtitle">
+              <h2 className="is-size-4">
                 {venueType}
               </h2>
             </div>
           </div>
 
-        </section>
 
-        <section className="section">
+
+
           <div className="container">
 
             <div className="columns">
               <div className="column">
+                <figure className="image is-4by3">
+                  <img src={coverImage}/>
+                </figure>
                 <figure className="image is-4by3">
                   <img src={images[1]}/>
                 </figure>
@@ -74,10 +78,15 @@ class VenuesShow extends React.Component {
                 </figure>
               </div>
               <div className="column">
-                <h4 className="subtitle is-4">Address:</h4>
-                <p className="subtitle is-6">{address1}, {address2}</p>
-                <p className="subtitle is-6">{postCode}</p>
+                <h4 className="is-size-5">Address:</h4>
+                <p>{address1}, {address2}</p>
+                <p className="is-6">{postCode}</p>
                 <div>Tel: {tel}</div>
+                <hr />
+                <div>{description}</div>
+                <a href={website}>{website}</a>
+                <hr />
+                <p>{pricePoint}</p>
               </div>
 
             </div>
