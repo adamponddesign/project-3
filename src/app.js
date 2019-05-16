@@ -19,6 +19,7 @@ import VenuesIndex from './components/venues/Index'
 import VenuesShow from './components/venues/Show'
 
 import 'bulma'
+// import 'bulma-carousel'
 import './style.scss'
 
 class App extends React.Component {

@@ -63,6 +63,13 @@ class Search extends React.Component {
       })
   }
 
+  // Attempt at handling the submit on enter key press
+  // checkSubmit(e) {
+  //   if(e && e.keyCode === 13) {
+  //     {this.getOptions}
+  //   }
+  // }
+
   render() {
     return (
       <div>

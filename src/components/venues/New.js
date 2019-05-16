@@ -23,7 +23,8 @@ class New extends React.Component {
       },
       errors: {},
       venues: [],
-      musicStyles: []
+      musicStyles: [],
+      message: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -81,8 +82,11 @@ class New extends React.Component {
     const isOvernight = this.state.data.openingTimes.some(time => time.isOvernight)
     // `return` from function
     if(!isOvernight){
-      return this.setState({ message: 'Please enter opening times that are running overnight', menuIsOpen: false, options: null })
+      this.setState({ message: 'Please enter opening times that are running overnight' })
+      console.log(this.state.message)
+      return
     }
+
     const token = Auth.getToken()
     axios.post('/api/venues', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
