@@ -78,20 +78,12 @@ class New extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    //This returns an array of boolean values based on the isOvernight value
-    const isOvernight = this.state.data.openingTimes.some(time => time.isOvernight)
-    // `return` from function
-    if(!isOvernight){
-      this.setState({ message: 'Please enter opening times that are running overnight' })
-      console.log(this.state.message)
-      return
-    }
-
     const token = Auth.getToken()
     axios.post('/api/venues', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/venues'))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
   render() {

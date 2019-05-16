@@ -17,12 +17,21 @@ const venueSchema = new mongoose.Schema({
   lng: { type: String },
   coverImage: { type: String},
   images: [{ type: String }],
-  openingTimes: [{
-    isOvernight: Boolean,
-    start: String,
-    end: String,
-    day: String
-  }],
+  openingTimes: {
+    type: [{
+      isOvernight: Boolean,
+      start: String,
+      end: String,
+      day: String
+    }],
+    validate: {
+      validator: (value) => {
+        //This returns an array of boolean values based on the isOvernight value
+        return value.some(time => time.isOvernight)
+      },
+      message: 'Please enter opening times that are running overnight'
+    }
+  },
   admissionFee: { type: Number },
   description: {type: String, required: true },
   venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
