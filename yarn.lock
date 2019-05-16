@@ -5567,6 +5567,11 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+react-favicon@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-favicon/-/react-favicon-0.0.16.tgz#9e16519c1b0aa621d4c81e0525445085652812b1"
+  integrity sha512-+vOrdwRYbzwlG9lpPrQgg4BdTc2/X3y6uiBhwKoy9v4eWzyPuNzvZwWruOEpEZGSGKwhrZxgIAJ6lv8DD6/qAA==
+
 react-input-autosize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"
