@@ -31,7 +31,7 @@ class VenuesShow extends React.Component {
   render(){
     console.log(this.state.venue)
     if(!this.state.venue) return null
-    const { _id, name, openingTimes, images, pricePoint, website, coverImage, tel, address1, address2, postCode, lat, long, description, venueType, musicStyles } = this.state.venue
+    const { name, openingTimes, images, pricePoint, website, coverImage, tel, address1, address2, postCode, lat, long, description, venueType, musicStyles } = this.state.venue
 
     return(
       <div>

@@ -22,7 +22,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
   return (
 
 
-    
+
 
     <form onSubmit={handleSubmit}>
       {/*Yelp API search field*/}
