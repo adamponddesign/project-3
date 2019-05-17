@@ -11,6 +11,10 @@
   --neon-border-color: #08f;
 }
 
+html{
+  background: #000;
+}
+
 body {
   font-family: 'Exo 2', sans-serif;
   font-style: italic;
@@ -289,6 +293,7 @@ color: white;
 
 p.help{
   color: white;
+  padding-bottom: 10px;
 }
 
 p.warning{
@@ -333,4 +338,9 @@ p.warning{
 
 .navbar-burger:hover {
   color: white;
+}
+.help.is-danger {
+  color: #f40;
+  font-weight: 600;
+  text-align: right;
 }

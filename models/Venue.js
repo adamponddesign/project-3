@@ -33,8 +33,8 @@ const venueSchema = new mongoose.Schema({
     }
   },
   admissionFee: { type: Number },
-  description: {type: String, required: true },
-  venueType: { type: String, required: true, enum: ['Bar', 'Boozer', 'Club'] },
+  description: {type: String, required: 'Please provide an appropriate description for this venue' },
+  venueType: { type: String, required: 'Please select a venue type from the options in the dropdown', enum: ['Bar', 'Boozer', 'Club'] },
   musicStyles: [{ type: String }],
   createdBy: {
     type: mongoose.Schema.ObjectId,

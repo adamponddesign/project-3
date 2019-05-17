@@ -42,13 +42,17 @@ function businessesRoute(req, res, next) {
         }
       } = response
 
-      let {
-        hours: [{
-          open: openingTimes
-        }]
-      } = response
+      let openingTimes = response.hours ? response.hours[0].open : [
+        { day: 0, start: '', end: '', is_overnight: true },
+        { day: 1, start: '', end: '', is_overnight: true },
+        { day: 2, start: '', end: '', is_overnight: true },
+        { day: 3, start: '', end: '', is_overnight: true },
+        { day: 4, start: '', end: '', is_overnight: true },
+        { day: 5, start: '', end: '', is_overnight: true },
+        { day: 6, start: '', end: '', is_overnight: true }
+      ]
 
-      const pricePoint = pricePoints[price.length-1]
+      const pricePoint = price ? pricePoints[price.length-1] : ''
 
       openingTimes = openingTimes.map(time => {
         time.day = daysOfTheWeek[time.day]
