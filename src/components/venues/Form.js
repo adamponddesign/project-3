@@ -21,8 +21,7 @@ const musicGenres = [
 const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSearchSelect, data, errors}) => {
   return (
     <main>
-
-      <form onSubmit={handleSubmit}>
+      <form>
         {/*Yelp API search field*/}
         <div className="field">
           <label className="label">Search</label>
@@ -32,6 +31,8 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
           <p className="help">Once you have a venue or business click GO to populate the fields below</p>
         </div>
       </form>
+
+
 
       <form onSubmit={handleSubmit}>
 
@@ -44,7 +45,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="name"
-              placeholder="eg: The Red Lion"
+              placeholder="e.g. The Red Lion (required)"
               onChange={handleChange}
               value={data.name || ''}
             />
@@ -59,7 +60,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="address1"
-              placeholder="eg: 123 Lion Lane"
+              placeholder="e.g. 123 Lion Lane (required)"
               onChange={handleChange}
               value={data.address1 || ''}
             />
@@ -89,7 +90,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="postCode"
-              placeholder="eg: W1 3TP"
+              placeholder="e.g. W1 3TP (required)"
               onChange={handleChange}
               value={data.postCode || ''}
             />
@@ -104,7 +105,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="tel"
-              placeholder="eg: +442037547444"
+              placeholder="e.g. +442037547444 (required)"
               onChange={handleChange}
               value={data.tel || ''}
             />
@@ -119,7 +120,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="website"
-              placeholder="eg: www.theredlion.com"
+              placeholder="e.g. http://www.theredlion.com (required)"
               onChange={handleChange}
               value={data.website || ''}
             />
@@ -134,7 +135,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <textarea
               className="textarea"
               name="description"
-              placeholder="eg: Nice vibe, great pint"
+              placeholder="eg: Nice vibe, great pint (required)"
               onChange={handleChange}
               value={data.description || ''}
             />
@@ -173,7 +174,6 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
         {/*opening times fields*/}
 
         <div className="label">Opening Times</div>
-        <p className="help">(24h format e.g. 0200)</p>
 
         {data.openingTimes.map(time =>
           <div className="field is-horizontal" key={time.day}> {/*Mon*/}
@@ -185,7 +185,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
                 <p className="control is-expanded">
                   <input
                     className="input is-small"
-                    placeholder="Opens"
+                    placeholder="Opens e.g. 1900"
                     name={`${time.day}|start`}
                     onChange={handleTimes}
                     value={time.start || ''}
@@ -196,7 +196,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
                 <p className="control is-expanded">
                   <input
                     className="input is-small"
-                    placeholder="Closes"
+                    placeholder="Closes e.g. 0200"
                     name={`${time.day}|end`}
                     onChange={handleTimes}
                     value={time.end || ''}
@@ -236,11 +236,10 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
             <input
               className="input"
               name="admissionFee"
-              placeholder="eg: 10"
+              placeholder="Provide value just as a number with no symbol"
               onChange={handleChange}
               value={data.admissionFee || ''}
             />
-            <p className="help">Provide value just as a number with no symbol</p>
           </div>
           {errors.admissionFee && <div className="help is-danger">{errors.admissionFee}</div>}
         </div>
@@ -255,7 +254,7 @@ const Form = ({ handleChange, handleTimes, handleSubmit, handleSelect, handleSea
                 onChange={handleChange}
                 value={data.venueType || ''}
               >
-                <option value="" disabled>Please choose...</option>
+                <option value="" disabled>Please choose... (required)</option>
                 <option value="Bar">Bar 🍹</option>
                 <option value="Boozer">Boozer 🍺</option>
                 <option value="Club">Club 🕺</option>

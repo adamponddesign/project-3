@@ -20,7 +20,7 @@ class Search extends React.Component {
   }
 
   handleChange({ target: { value } }) {
-    this.setState({ term: value })
+    this.setState({ term: value, message: '' })
   }
 
   getOptions() {
@@ -63,12 +63,6 @@ class Search extends React.Component {
       })
   }
 
-  // Attempt at handling the submit on enter key press
-  // checkSubmit(e) {
-  //   if(e && e.keyCode === 13) {
-  //     {this.getOptions}
-  //   }
-  // }
 
   render() {
     return (
@@ -82,7 +76,13 @@ class Search extends React.Component {
         ) : (
           <div className="field has-addons">
             <div className="control is-expanded">
-              <input className="input" value={this.state.term || ''} onChange={this.handleChange} placeholder="Search by name or business type" />
+              <input
+                className="input"
+                value={this.state.term || ''}
+                onChange={this.handleChange}
+                onKeyUp={(e => e.keyCode === 13 && this.getOptions())}
+                placeholder="Search by name or business type"
+              />
             </div>
             <div className="control">
               <button className="button is-info" type="button" onClick={this.getOptions}>Go</button>
