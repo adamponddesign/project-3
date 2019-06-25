@@ -1,11 +1,11 @@
-# General Assembly Project 2
 # After Midnight
+## General Assembly Project 3
 ![After Midnight Logo](https://user-images.githubusercontent.com/47188720/59196102-9fd5a200-8b85-11e9-9fdc-0c1d30866668.png)
 
-## Timeframe
+### Timeframe
 5 days
 
-## Technologies, frameworks and packages
+### Technologies, frameworks and packages
 * React
 * Webpack
 * MongoDB/Mongoose
@@ -20,31 +20,31 @@
 * ReactMapBox-GL
 
 
-## Project brief and team
+### Project brief and team
 The brief was to build a full-stack application with a React front-end and noSQL database. The application had to include data schema and a RESTful api framework.
 
 The project was collaboration with [Hugo Raymond](https://github.com/h-raymond) merging code from a single GitHub repository.
 
 The application is deployed via Git on Heroku and can be found here: [After Midnight](http://after-midnight.herokuapp.com)
 
-## App overview
+### App overview
 
 
-## Development process
+### Development process
 
 * Hugo had the idea to create a database of venues that were open after midnight.
 
 
 * planning
 
-## Wins
+### Wins
 
 
-## Challenges
+### Challenges
 The biggest challenge of our project, and also the area that took the most time, was the form on the 'add venue' page.
 
 
-## Screen Shots
+### Screen Shots
 * ### Index Page
 ![After Midnight Index Page](https://user-images.githubusercontent.com/47188720/59195804-d101a280-8b84-11e9-84bb-9bab2b618cda.png)
 
@@ -55,7 +55,7 @@ The biggest challenge of our project, and also the area that took the most time,
 ![After Midnight Form](https://user-images.githubusercontent.com/47188720/59196372-62254900-8b86-11e9-8f85-aa4b7028a023.png)
 
 
-## Future enhancements
+### Future enhancements
 * Filter by venue type on venue index page
 * Options to edit and delete venues that user has created
 * Option for user to add their own images
