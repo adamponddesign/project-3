@@ -30,35 +30,35 @@ The application is deployed via Git on Heroku and can be found here: [After Midn
 ### App overview
 The application allows users to view on a map venues that are open after midnight.
 User current location is also highlighted so venues that are close by can be easily identified.
-Upon clicking a marker, a pop up shows basic info, and the `More Info` link navigates to the `Venue Page`.
-The `Venue Page` provides more detailed information about each venue including which nights of week the venue is open after midnight.  
+Upon clicking a marker, a pop up shows basic info, and the **More Info** link navigates to the **Venue Page**.
+The **Venue Page** provides more detailed information about each venue including which nights of week the venue is open after midnight.  
 The app provides register/login options.  
-Once registered and logged in a user gains access to the `Add Venue` page.
+Once registered and logged in a user gains access to the **Add Venue** page.
 
 
 ### Development process
 
 Once we had decided on our idea, we set about wire-framing the various pages of our app.
-For our MVP we wanted our `Add Venue` form to perform solidly, and our database of venues to be displayed on the `Venues` page in a text list format.  
-We only added the map functionality on the `Venues` page after we had reached MVP.
+For our MVP we wanted our **Add Venue** form to perform solidly, and our database of venues to be displayed on the **Venues** page in a text list format.  
+We only added the map functionality on the **Venues** page after we had reached MVP.
 
 
 
 ### Wins
-Upon achieving MVP it was very enjoyable to move on to displaying our database of venues on a map using `ReactMapBox-GL`.  
+Upon achieving MVP it was very enjoyable to move on to displaying our database of venues on a map using **ReactMapBox-GL**.  
 Referencing the documentation we were able to add customised
 * Markers
 * Popups
 * Colours
 
-We also were pleased to add the `You Are Here` marker, as this improved the overall app experience.
+We also were pleased to add the **You Are Here** marker, as this improved the overall app experience.
 
 
 
 ### Challenges
-The biggest challenge of our project was the `Add Venue` form.
+The biggest challenge of our project was the **Add Venue** form.
 Our aim was to help users populate the form.
-Upon entering a venue name and clicking 'Go', the search bar at the top of the page pulls information from the `YelpAPI` then automatically populates most of the form fields.
+Upon entering a venue name and clicking 'Go', the search bar at the top of the page pulls information from the **YelpAPI** then automatically populates most of the form fields.
 
 
 
