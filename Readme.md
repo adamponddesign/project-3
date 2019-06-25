@@ -1,4 +1,4 @@
-# After Midnight
+# After Midnight (Full-Stack Web App)
 ## General Assembly Project 3
 
 
