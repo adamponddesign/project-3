@@ -25,7 +25,7 @@
 The brief was to build a full-stack application with a React front-end and noSQL database.  
 The application had to include data schema and a RESTful api framework.  
 The project was collaboration with [Hugo Raymond](https://github.com/h-raymond) merging code from a single GitHub repository.  
-The application is deployed via Git on Heroku and can be found here: [After Midnight](http://after-midnight.herokuapp.com)
+The application is deployed via Git on Heroku here - http://after-midnight.herokuapp.com
 
 ### App overview
 The application allows users to view on a map venues that are open after midnight.
